@@ -47,8 +47,18 @@ Route::post('/pricing/premium/insert', [PortfolioController::class, 'pricing_pre
 
 Route::get('/pricing/gold', [PortfolioController::class, 'pricing_gold'])->name('pricing.gold');
 
+
 Route::post('/pricing/gold/insert', [PortfolioController::class, 'pricing_gold_insert'])->name('insert.gold');
 
+// testimonial
+
+Route::get('/testimonial/show', [PortfolioController::class, 'testimonial'])->name('testimonial');
+
+Route::post('/testimonial/insert', [PortfolioController::class, 'testimonial_insert'])->name('testimonial.insert');
+
+Route::post('/sendmessage/insert', [PortfolioController::class, 'send_insert'])->name('send_message');
+
+Route::get('/sendmessage/show', [PortfolioController::class, 'show'])->name('show.contact');
 
 
 

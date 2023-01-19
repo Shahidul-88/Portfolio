@@ -491,6 +491,42 @@ e 								@if(Auth::user()->photo == null)
 							</div>
 						</li> 
 						{{-- copy end  --}}
+						{{-- copy this --}}
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#testimonial">
+								<i class="fas fa-layer-group"></i>
+								<p>Testimonial Section</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="testimonial">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="{{route('testimonial')}}">
+											<span class="">Add Testimonial</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li> 
+						{{-- copy end  --}}
+						{{-- copy this --}}
+						<li class="nav-item">
+							<a data-toggle="collapse" href="#contact">
+								<i class="fas fa-layer-group"></i>
+								<p>Contact Section</p>
+								<span class="caret"></span>
+							</a>
+							<div class="collapse" id="contact">
+								<ul class="nav nav-collapse">
+									<li>
+										<a href="{{route('show.contact')}}">
+											<span class="">Show Messages</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li> 
+						{{-- copy end  --}}
 					</ul>
 				</div>
 			</div>

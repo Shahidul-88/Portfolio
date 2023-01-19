@@ -228,34 +228,20 @@
 
             <!-- row -->
             <div class="row">
+                @foreach ($testimonials as $test )
                 <div class="col-md-6">
                     <div class="testimonial-card">
                         <div class="testimonial-card-img-holder">
-                            <img src="{{asset('Frontend/imgs/avatar2.jpg')}}" class="testimonial-card-img"
-                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                            <img src="{{asset('Uploads/testimonial')}}/{{$test->photo}}" class="testimonial-card-img"
+                                alt="img">
                         </div>
                         <div class="testimonial-card-body">
-                            <p class="testimonial-card-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Eaque doloribus autem aperiam earum nostrum omnis blanditiis corporis perspiciatis
-                                adipisci nihil.</p>
-                            <h6 class="testimonial-card-title">Emily Reb</h6>
+                            <p class="testimonial-card-subtitle">{{$test->desp}}</p>
+                            <h6 class="testimonial-card-title">{{$test->name}}</h6>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="testimonial-card">
-                        <div class="testimonial-card-img-holder">
-                            <img src="{{asset('Frontend/imgs/avatar3.jpg')}}" class="testimonial-card-img"
-                                alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                        </div>
-                        <div class="testimonial-card-body">
-                            <p class="testimonial-card-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing
-                                elit. Eaque doloribus autem aperiam earum nostrum omnis blanditiis corporis perspiciatis
-                                adipisci nihil.</p>
-                            <h6 class="testimonial-card-title">Emily Reb</h6>
-                        </div>
-                    </div>
-                </div>
+                </div>                 
+                @endforeach
             </div>
         </div> <!-- end of container -->
     </section> <!-- end of testimonial section -->
@@ -268,19 +254,23 @@
             <!-- contact form -->
             <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
                 <div class="form-row">
+                    <form action="{{route('send_message')}}" method="POST">
+                        @csrf
+                    
                     <div class="form-group col-sm-6">
-                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>
+                        <input name="name" type="text" size="50" class="form-control" placeholder="Your Name" required>
                     </div>
                     <div class="form-group col-sm-6">
-                        <input type="email" class="form-control" placeholder="Enter Email" requried>
+                        <input name="email" type="email" class="form-control" placeholder="Enter Email" requried>
                     </div>
                     <div class="form-group col-sm-12">
                         <textarea name="comment" id="comment" rows="6" class="form-control"
                             placeholder="Write Something"></textarea>
                     </div>
                     <div class="form-group col-sm-12 mt-3">
-                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
+                        <button class="btn btn-primary" type="submit">Submit</button>
                     </div>
+                    </form>
                 </div>
             </form><!-- end of contact form -->
         </div><!-- end of container -->

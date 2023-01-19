@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\About;
 use App\Models\Gold;
-use App\Models\HeaderInfo;
-use App\Models\Portfolio;
+use App\Models\About;
+use App\Models\Contact;
 use App\Models\Premium;
-use App\Models\PremiumPricing;
 use App\Models\Pricing;
 use App\Models\Service;
+use App\Models\Portfolio;
+use App\Models\HeaderInfo;
+use App\Models\Testimonial;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\PremiumPricing;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
@@ -28,6 +30,7 @@ class PortfolioController extends Controller
         $premiumss_services = PremiumPricing::all('pricing_service_premium');
         $golds = Gold::find(1);
         $gold_service = Gold::all('gold_services');
+        $testimonials = Testimonial::all();
         return view('index',[
             'header' => $header,
             'about_all' => $about_all,
@@ -39,6 +42,7 @@ class PortfolioController extends Controller
             'premiumss_services' => $premiumss_services,
             'golds' => $golds,
             'gold_service' => $gold_service,
+            'testimonials'=> $testimonials,
         ]);
     } 
     public function details(){
@@ -212,5 +216,43 @@ class PortfolioController extends Controller
 
         ]);
         return back()->with('success', 'Addedd Successfully');
+    }
+
+    function testimonial(){
+        $testimonials = Testimonial::all();
+        return view('Admin.Testimonial.add',[
+            'testimonials' => $testimonials
+        ]);
+    }
+
+    function testimonial_insert(Request $request){
+        $about_photo = $request->photo;
+        $extension = $about_photo->getClientOriginalExtension();
+        $file_name = Str::lower(str_replace(' ', '-', 'client_image')) . '-' . rand(10, 100000) . '.' . $extension;
+
+        Image::make($about_photo)->save(public_path('Uploads/testimonial/' . $file_name));
+
+        Testimonial::insert([
+            'photo' => $file_name,
+            'desp' => $request->desp,
+            'name' => $request->name
+
+        ]);
+        return back()->with('success', 'Addedd Successfully');
+    }
+
+    public function send_insert(Request $request){
+        Contact::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'comment' => $request->comment,
+        ]);
+        return back()->with('success', 'Addedd Successfully');
+    }
+    public function show(){
+        $contacts = Contact::all();
+        return view('Admin.Contact.show',[
+            'contacts' => $contacts,
+        ]);
     }
 }
