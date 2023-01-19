@@ -56,7 +56,7 @@ Route::get('/testimonial/show', [PortfolioController::class, 'testimonial'])->na
 
 Route::post('/testimonial/insert', [PortfolioController::class, 'testimonial_insert'])->name('testimonial.insert');
 
-Route::post('/sendmessage/insert', [PortfolioController::class, 'send_insert'])->name('send_message');
+Route::post('/sendmessage/insert', [PortfolioController::class, 'send_insert'])->name('send.message');
 
 Route::get('/sendmessage/show', [PortfolioController::class, 'show'])->name('show.contact');
 

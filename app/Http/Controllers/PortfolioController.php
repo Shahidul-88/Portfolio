@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Gold;
 use App\Models\About;
 use App\Models\Contact;
-use App\Models\Premium;
 use App\Models\Pricing;
 use App\Models\Service;
 use App\Models\Portfolio;
@@ -247,7 +246,7 @@ class PortfolioController extends Controller
             'email' => $request->email,
             'comment' => $request->comment,
         ]);
-        return back()->with('success', 'Addedd Successfully');
+        return redirect('/#contact')->with('success', 'Message Send to Developer Successfully');
     }
     public function show(){
         $contacts = Contact::all();
