@@ -480,10 +480,10 @@ e 								@if(Auth::user()->photo == null)
 										<a href="{{route('pricing')}}">
 											<span class="">Add Pricing - Basic</span>
 										</a>
-										<a href="{{route('pricing')}}">
+										<a href="{{route('pricing.premium')}}">
 											<span class="">Add Pricing - Premium</span>
 										</a>
-										<a href="{{route('pricing')}}">
+										<a href="{{route('pricing.gold')}}">
 											<span class="">Add Pricing - Gold</span>
 										</a>
 									</li>

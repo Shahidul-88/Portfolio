@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Gold;
 use App\Models\HeaderInfo;
 use App\Models\Portfolio;
 use App\Models\Premium;
+use App\Models\PremiumPricing;
 use App\Models\Pricing;
 use App\Models\Service;
 use Illuminate\Support\Str;
@@ -22,6 +24,10 @@ class PortfolioController extends Controller
         $portfolio = Portfolio::all();
         $free_prices = Pricing::find(1);
         $free_prices_serv = Pricing::all('pricing_service');
+        $premiumss = PremiumPricing::find(1);
+        $premiumss_services = PremiumPricing::all('pricing_service_premium');
+        $golds = Gold::find(1);
+        $gold_service = Gold::all('gold_services');
         return view('index',[
             'header' => $header,
             'about_all' => $about_all,
@@ -29,6 +35,10 @@ class PortfolioController extends Controller
             'portfolio' => $portfolio,
             'free_prices' => $free_prices,
             'free_prices_serv' => $free_prices_serv,
+            'premiumss' => $premiumss,
+            'premiumss_services' => $premiumss_services,
+            'golds' => $golds,
+            'gold_service' => $gold_service,
         ]);
     } 
     public function details(){
@@ -157,4 +167,50 @@ class PortfolioController extends Controller
         return back()->with('success', 'Addedd Successfully');
     }
 
+    public function pricing_premium(){
+        $premiums = PremiumPricing::all();
+        return view('Admin.Pricing.premium',[
+            'premiums' => $premiums,
+        ]);
+    }
+    public function pricing_premium_insert(Request $request){
+        $about_photo = $request->pricing_image_premium;
+        $extension = $about_photo->getClientOriginalExtension();
+        $file_name = Str::lower(str_replace(' ', '-', 'premium_image')) . '-' . rand(10, 100000) . '.' . $extension;
+
+        Image::make($about_photo)->save(public_path('Uploads/pricing/' . $file_name));
+
+        PremiumPricing::insert([
+            'pricing_name_premium' =>  $request->pricing_name_premium,
+            'pricing_service_premium' =>  $request->pricing_service_premium,
+            'pricing_rate_premium' =>  $request->pricing_rate_premium,
+            'pricing_image_premium' =>  $file_name,
+
+        ]);
+        return back()->with('success', 'Addedd Successfully');
+    }
+
+    public function pricing_gold(){
+        $golds = Gold::all();
+        return view('Admin.Pricing.gold',[
+            'golds' => $golds,
+        ]);
+    }
+
+    public function pricing_gold_insert(Request $request){
+        $about_photo = $request->gold_image;
+        $extension = $about_photo->getClientOriginalExtension();
+        $file_name = Str::lower(str_replace(' ', '-', 'gold_image')) . '-' . rand(10, 100000) . '.' . $extension;
+
+        Image::make($about_photo)->save(public_path('Uploads/pricing/' . $file_name));
+
+        Gold::insert([
+            'gold_name' =>  $request->gold_name,
+            'gold_services' =>  $request->gold_services,
+            'gold_rate' =>  $request->gold_rate,
+            'gold_image' =>  $file_name,
+
+        ]);
+        return back()->with('success', 'Addedd Successfully');
+    }
 }

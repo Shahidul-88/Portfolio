@@ -161,45 +161,40 @@
                 
                 <div class="pricing-card">
                     <div class="pricing-card-header">
-                        <img class="pricing-card-icon" src="{{asset('Frontend/imgs/shipped.svg')}}"
-                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        <img class="pricing-card-icon" src="{{asset('Uploads/pricing')}}/{{$premiumss->pricing_image_premium}}"
+                            alt="image">
                     </div>
                     <div class="pricing-card-body">
-                        <h6 class="pricing-card-title">Basic</h6>
+                        <h6 class="pricing-card-title">{{$premiumss->pricing_name_premium}}</h6>
                         <div class="pricing-card-list">
-                            <p>accusamus reprehenderit</p>
-                            <p>provident dolorem </p>
-                            <p>quos neque</p>
-                            <p>fugiat quibusdam</p>
-                            <p>accusamus laboriosam</p>
-                            <p><i class="ti-close"></i></p>
+                            @foreach ($premiumss_services as $prems )
+                              <p>{{$prems->pricing_service_premium}}</p>  
+                            @endforeach
                         </div>
                     </div>
                     <div class="pricing-card-footer">
                         <span>$</span>
-                        <span>9.99/Month</span>
+                        <span>{{$premiumss->pricing_rate_premium}}/Project</span>
                     </div>
                     <a href="#" class="btn btn-primary mt-3 pricing-card-btn">Subscribe</a>
                 </div>
                 <div class="pricing-card">
                     <div class="pricing-card-header">
-                        <img class="pricing-card-icon" src="{{asset('Frontend/imgs/startup.svg')}}"
-                            alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        <img class="pricing-card-icon" src="{{asset('Uploads/pricing')}}/{{$golds->gold_image}}"
+                            alt="img">
                     </div>
                     <div class="pricing-card-body">
                         <h6 class="pricing-card-title">Premium</h6>
                         <div class="pricing-card-list">
-                            <p>accusamus reprehenderit</p>
-                            <p>provident dolorem </p>
-                            <p>quos neque</p>
-                            <p>fugiat quibusdam</p>
-                            <p>accusamus laboriosam</p>
-                            <p>inventore omnis</p>
+                            @foreach ($gold_service as $service )
+                               <p>{{$service->gold_services}}</p> 
+                            @endforeach
+                             
                         </div>
                     </div>
                     <div class="pricing-card-footer">
                         <span>$</span>
-                        <span>99.9/Month</span>
+                        <span>{{$golds->gold_rate}}/Project</span>
                     </div>
                     <a href="#" class="btn btn-primary mt-3 pricing-card-btn">Subscribe</a>
                 </div>
@@ -219,7 +214,7 @@
                     <p class="m-0 text-light">Always feel Free to Contact & Hire me</p>
                 </div>
                 <div class="col-sm offset-sm-2 offset-md-3">
-                    <button class="btn btn-lg my-font btn-light rounded">Hire Me</button>
+                    <button class="btn btn-lg my-font btn-light rounded"><a href="https://www.linkedin.com/in/shahidul-islam-a1b2891a7/">Hire Me</a></button>
                 </div>
             </div> <!-- end of row -->
         </div> <!-- end of container -->

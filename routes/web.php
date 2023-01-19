@@ -41,4 +41,17 @@ Route::get('/pricing/show/', [PortfolioController::class, 'pricing_show'])->name
 
 Route::post('/pricing/insert/', [PortfolioController::class, 'pricing_insert'])->name('insert.pricing.free');
 
+Route::get('/pricing/premium/', [PortfolioController::class, 'pricing_premium'])->name('pricing.premium');
+
+Route::post('/pricing/premium/insert', [PortfolioController::class, 'pricing_premium_insert'])->name('insert.premium');
+
+Route::get('/pricing/gold', [PortfolioController::class, 'pricing_gold'])->name('pricing.gold');
+
+Route::post('/pricing/gold/insert', [PortfolioController::class, 'pricing_gold_insert'])->name('insert.gold');
+
+
+
+
+
+
 
